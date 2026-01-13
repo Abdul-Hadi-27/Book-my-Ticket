@@ -1,0 +1,233 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import {
+  asyncdeleteuser,
+  asynclogoutuser,
+  asyncupdateuser,
+} from "../store/actions/UserActions";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Pencil, Save } from "lucide-react";
+
+const MyProfile = () => {
+  const user = useSelector((state) => state.userReducer.users);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isEditing, setIsEditing] = useState(false);
+  const [preview, setPreview] = useState(null);
+
+  const { register, reset, handleSubmit } = useForm({
+    defaultValues: {
+      name: user?.name,
+      email: user?.email,
+      password: user?.password,
+      phonenumber: user?.phonenumber,
+    },
+  });
+
+  const UpdateUserHandler = (formData) => {
+    const updatedData={
+      ...formData, photo: preview || user.photo
+    }
+    dispatch(asyncupdateuser(user.id, updatedData));
+    toast.success("Profile updated!");
+    setIsEditing(false);
+  };
+
+  const DeleteHandler = () => {
+    dispatch(asyncdeleteuser(user.id));
+    toast.success("User Deleted!");
+
+    navigate("/");
+  };
+  // const LogoutUserHandler = () => {
+  //   dispatch(asynclogoutuser());
+  //   toast.success("User LoggedOut successfully!");
+
+  //   navigate("/");
+  // };
+  useEffect(() => {
+    if (user) {
+      reset({
+        name: user?.name,
+        email: user?.email,
+        password: user?.password,
+        phonenumber: user?.phonenumber,
+      });
+    }
+  }, [user]);
+ 
+
+  
+const handlePhoto = (e) => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    setPreview(reader.result);  // <-- base64 string
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+};
+
+
+  return user ? (
+    <>
+      <div className=" h-60 w-full  p-4 ">
+        <div className=" h-50 w-full bg-gray-600 opacity-90 rounded-2xl p-6">
+          <div className="flex  items-center gap-x-5">
+            <div className="bg-red-200 h-30 w-30 rounded-full">
+              <img
+                src={preview || user?.photo || "/default-user.png"}
+                className="h-30 w-30 rounded-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-y-1">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handlePhoto}
+                className="hidden"
+                id="photoUpload"
+              />
+
+              <label
+                htmlFor="photoUpload"
+                className="bg-gray-400 opacity-60 rounded-xl p-1 text-xs text-white cursor-pointer"
+              >
+                Upload new photo
+              </label>
+              <p className="text-sm text-gray-300">
+                Atleast 800*800 px recommended. <br />
+                JPG or PNG is allowed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* {Personal Info} */}
+      <div className=" h-50 w-full p-5 select-none ">
+        <div className=" h-40 w-full rounded-2xl p-2 relative">
+          <div className="text-center text-4xl  ">Personal Info</div>
+          <div className="flex justify-center items-center flex-col    ">
+            <form
+              onSubmit={handleSubmit(UpdateUserHandler)}
+              className="flex  gap-x-5 w-full  p-3
+     items-center "
+            >
+              {" "}
+              <div className="flex flex-col w-1/2">
+                <small className="text-gray-500">Full Name</small>
+                <input
+                  {...register("name")}
+                  type="text"
+                  className={`outline-none border p-1 text-xl transition 
+    ${
+      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+    }`}
+                  placeholder="update username"
+                  readOnly={!isEditing}
+                />
+              </div>
+              <div className="flex flex-col   w-1/2">
+                <small className="text-gray-500"> Email</small>
+                <input
+                  {...register("email")}
+                  type="email"
+                  className={`outline-none border p-1 text-xl transition 
+    ${
+      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+    }`}
+                  placeholder="update username"
+                  readOnly={!isEditing}
+                />
+              </div>
+              <div className="flex flex-col  w-1/2">
+                <small className="text-gray-500"> Password</small>
+                <input
+                  {...register("password")}
+                  type="password"
+                  className={`outline-none border p-1 text-xl transition 
+    ${
+      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+    }`}
+                  placeholder="update username"
+                  readOnly={!isEditing}
+                />
+              </div>
+              <div className="flex flex-col  w-1/2">
+                <small className="text-gray-500"> Phone Number</small>
+                <input
+                  {...register("phonenumber")}
+                  type="text"
+                  className={`outline-none border p-1 text-xl transition 
+    ${
+      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+    }`}
+                  placeholder="update username"
+                  readOnly={!isEditing}
+                />
+              </div>
+              <div className="absolute top-1 right-0  w-fit gap-3">
+                {!isEditing && (
+                  <button
+                    type="button"
+                    onClick={() => setIsEditing(true)}
+                    className="px-3 py-1 bg-blue-500 text-white rounded flex items-center gap-1"
+                  >
+                    <Pencil size={16} /> Edit
+                  </button>
+                )}
+
+                {isEditing && (
+                  <button
+                    type="submit"
+                    className="px-3 py-1 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!isEditing}
+                  >
+                    Update
+                  </button>
+                )}
+              </div>
+            </form>
+            <div></div>
+          </div>
+        </div>
+        <div className="flex gap-x-10 w-full justify-center ">
+          {/* <button
+            type="button"
+            onClick={LogoutUserHandler}
+            className="mt-5 px-3 text-xs py-1 bg-red-600 text-white rounded absolute top-24 right-8 "
+          >
+            Log Out 
+          </button> */}
+          <button
+            type="button"
+            onClick={DeleteHandler}
+            className="mt-5 px-4 py-2 bg-rose-500 text-white rounded"
+          >
+            Delete User
+          </button>
+        </div>
+      </div>
+
+      {/* Form */}
+    </>
+  ) : (
+    "Loading..."
+  );
+};
+
+export default MyProfile;
+
+/** <div className="flex justify-center flex-col ">
+        <span className="px-8">
+          Existing details :
+          <h1 className="font-thin text-blue-600 text-5xl ">{user.name}</h1>
+        </span>
+        <h1 className="font-thin text-blue-600 px-8  text-xl">{user.email}</h1>
+        <hr className="my-10" />
+      </div> */

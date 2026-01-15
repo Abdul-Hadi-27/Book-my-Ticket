@@ -62,14 +62,18 @@ export const asyncupdateuser = (id, user) => async (dispatch) => {
   try {
     const { data } = await axios.patch("/users/" + id, user);
 
+    dispatch(loaduser(data));
+    
+    // NEW: localStorage update for unified source of truth
     localStorage.setItem("user", JSON.stringify(data));
-   dispatch(loaduser(data));
-     return data;
+
+    return data;
 
   } catch (error) {
     console.log(error);
   }
 };
+
 export const asyncdeleteuser = (id) => async (dispatch, getState) => {
   try {
     await axios.delete("/users/" + id);

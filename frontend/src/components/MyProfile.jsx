@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   asyncdeleteuser,
-  asynclogoutuser,
   asyncupdateuser,
 } from "../store/actions/UserActions";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Pencil, Save } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 const MyProfile = () => {
   const user = useSelector((state) => state.userReducer.users);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
@@ -26,27 +26,37 @@ const MyProfile = () => {
     },
   });
 
+  // update info (name,email,...)
   const UpdateUserHandler = (formData) => {
-    const updatedData={
-      ...formData, photo: preview || user.photo
-    }
+    const updatedData = {
+      ...user,
+      ...formData,
+      photo: user.photo || "",
+    };
+
     dispatch(asyncupdateuser(user.id, updatedData));
-    toast.success("Profile updated!");
+    toast.success("Profile info updated!");
     setIsEditing(false);
+  };
+
+  // update photo only
+  const SavePhotoHandler = () => {
+    const updatedData = {
+      ...user,
+      photo: preview ? preview : user.photo || "",
+    };
+
+    dispatch(asyncupdateuser(user.id, updatedData));
+    toast.success("Profile photo updated!");
+    setPreview(null);
   };
 
   const DeleteHandler = () => {
     dispatch(asyncdeleteuser(user.id));
     toast.success("User Deleted!");
-
     navigate("/");
   };
-  // const LogoutUserHandler = () => {
-  //   dispatch(asynclogoutuser());
-  //   toast.success("User LoggedOut successfully!");
 
-  //   navigate("/");
-  // };
   useEffect(() => {
     if (user) {
       reset({
@@ -56,35 +66,33 @@ const MyProfile = () => {
         phonenumber: user?.phonenumber,
       });
     }
-  }, [user]);
- 
+  }, [user,reset]);
 
-  
-const handlePhoto = (e) => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
+  const handlePhoto = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
 
-  reader.onloadend = () => {
-    setPreview(reader.result);  // <-- base64 string
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
-
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-};
-
 
   return user ? (
     <>
-      <div className=" h-60 w-full  p-4 ">
-        <div className=" h-50 w-full bg-gray-600 opacity-90 rounded-2xl p-6">
-          <div className="flex  items-center gap-x-5">
+      <div className="h-60 w-full p-4">
+        <div className="h-50 w-full bg-gray-600 opacity-90 rounded-2xl p-6">
+          <div className="flex items-center gap-x-5">
             <div className="bg-red-200 h-30 w-30 rounded-full">
               <img
                 src={preview || user?.photo || "/default-user.png"}
                 className="h-30 w-30 rounded-full object-cover"
               />
             </div>
+
             <div className="flex flex-col gap-y-1">
               <input
                 type="file"
@@ -96,82 +104,88 @@ const handlePhoto = (e) => {
 
               <label
                 htmlFor="photoUpload"
-                className="bg-gray-400 opacity-60 rounded-xl p-1 text-xs text-white cursor-pointer"
+                className="bg-gray-400 opacity-60 rounded-xl p-1 text-xs text-white text-center cursor-pointer"
               >
                 Upload new photo
               </label>
+
               <p className="text-sm text-gray-300">
-                Atleast 800*800 px recommended. <br />
+                Atleast 800×800 px recommended.<br />
                 JPG or PNG is allowed.
               </p>
+
+              {preview && (
+                <button
+                  type="button"
+                  onClick={SavePhotoHandler}
+                  className="px-3 py-1 bg-green-600 text-white rounded mt-2"
+                >
+                  Save
+                </button>
+              )}
             </div>
           </div>
         </div>
       </div>
-      {/* {Personal Info} */}
-      <div className=" h-50 w-full p-5 select-none ">
-        <div className=" h-40 w-full rounded-2xl p-2 relative">
-          <div className="text-center text-4xl  ">Personal Info</div>
-          <div className="flex justify-center items-center flex-col    ">
+
+      {/* INFO */}
+      <div className="h-50 w-full p-5 select-none">
+        <div className="h-40 w-full rounded-2xl p-2 relative">
+          <div className="text-center text-4xl">Personal Info</div>
+          <div className="flex justify-center items-center flex-col">
             <form
               onSubmit={handleSubmit(UpdateUserHandler)}
-              className="flex  gap-x-5 w-full  p-3
-     items-center "
+              className="flex gap-x-5 w-full p-3 items-center "
             >
-              {" "}
               <div className="flex flex-col w-1/2">
                 <small className="text-gray-500">Full Name</small>
                 <input
                   {...register("name")}
                   type="text"
-                  className={`outline-none border p-1 text-xl transition 
-    ${
-      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
-    }`}
-                  placeholder="update username"
                   readOnly={!isEditing}
+                  className={`outline-none border p-1 text-xl transition ${
+                    !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+                  }`}
                 />
               </div>
-              <div className="flex flex-col   w-1/2">
-                <small className="text-gray-500"> Email</small>
+
+              <div className="flex flex-col w-1/2">
+                <small className="text-gray-500">Email</small>
                 <input
                   {...register("email")}
                   type="email"
-                  className={`outline-none border p-1 text-xl transition 
-    ${
-      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
-    }`}
-                  placeholder="update username"
                   readOnly={!isEditing}
+                  className={`outline-none border p-1 text-xl transition ${
+                    !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+                  }`}
                 />
               </div>
-              <div className="flex flex-col  w-1/2">
-                <small className="text-gray-500"> Password</small>
+
+              <div className="flex flex-col w-1/2">
+                <small className="text-gray-500">Password</small>
                 <input
                   {...register("password")}
                   type="password"
-                  className={`outline-none border p-1 text-xl transition 
-    ${
-      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
-    }`}
-                  placeholder="update username"
                   readOnly={!isEditing}
+                  className={`outline-none border p-1 text-xl transition ${
+                    !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+                  }`}
                 />
               </div>
-              <div className="flex flex-col  w-1/2">
-                <small className="text-gray-500"> Phone Number</small>
+
+              <div className="flex flex-col w-1/2">
+                <small className="text-gray-500">Phone Number</small>
                 <input
                   {...register("phonenumber")}
                   type="text"
-                  className={`outline-none border p-1 text-xl transition 
-    ${
-      !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
-    }`}
-                  placeholder="update username"
                   readOnly={!isEditing}
+                  className={`outline-none border p-1 text-xl transition ${
+                    !isEditing ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-white"
+                  }`}
                 />
               </div>
-              <div className="absolute top-1 right-0  w-fit gap-3">
+
+              <div className="absolute top-1 right-0 w-fit gap-3">
                 {!isEditing && (
                   <button
                     type="button"
@@ -185,25 +199,17 @@ const handlePhoto = (e) => {
                 {isEditing && (
                   <button
                     type="submit"
-                    className="px-3 py-1 bg-green-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                    disabled={!isEditing}
+                    className="px-3 py-1 bg-green-600 text-white rounded"
                   >
                     Update
                   </button>
                 )}
               </div>
             </form>
-            <div></div>
           </div>
         </div>
-        <div className="flex gap-x-10 w-full justify-center ">
-          {/* <button
-            type="button"
-            onClick={LogoutUserHandler}
-            className="mt-5 px-3 text-xs py-1 bg-red-600 text-white rounded absolute top-24 right-8 "
-          >
-            Log Out 
-          </button> */}
+
+        <div className="flex gap-x-10 w-full justify-center">
           <button
             type="button"
             onClick={DeleteHandler}
@@ -213,8 +219,6 @@ const handlePhoto = (e) => {
           </button>
         </div>
       </div>
-
-      {/* Form */}
     </>
   ) : (
     "Loading..."
@@ -222,12 +226,3 @@ const handlePhoto = (e) => {
 };
 
 export default MyProfile;
-
-/** <div className="flex justify-center flex-col ">
-        <span className="px-8">
-          Existing details :
-          <h1 className="font-thin text-blue-600 text-5xl ">{user.name}</h1>
-        </span>
-        <h1 className="font-thin text-blue-600 px-8  text-xl">{user.email}</h1>
-        <hr className="my-10" />
-      </div> */

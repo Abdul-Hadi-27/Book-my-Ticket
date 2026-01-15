@@ -1,0 +1,532 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "itemId": "m1",
+      "title": "Inception",
+      "language": "English",
+      "genre": "Sci-Fi",
+      "duration": "2h 28m",
+      "rating": 8.8,
+      "price": 250,
+      "poster": "https://play-lh.googleusercontent.com/buKf27Hxendp3tLNpNtP3E-amP0o4yYV-SGKyS2u-Y3GdGRTyfNCIT5WAVs2OudOz6so5K1jtYdAUKI9nw8=w240-h480-rw",
+      "description": "A thief who enters people's dreams and steals their secrets gets a chance to erase his criminal past.",
+      "category": "Action",
+      "releaseDate": "2010-07-16"
+    },
+    {
+      "id": "2",
+      "itemId": "m2",
+      "title": "Jawan",
+      "language": "Hindi",
+      "genre": "Action, Thriller",
+      "duration": "2h 49m",
+      "rating": 8.1,
+      "price": 220,
+      "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSMEiUhSqYVO3GvRIqiDmMKT7K40rFNKL9vg&s",
+      "description": "A man on a mission to right the wrongs of society, taking on corruption and injustice.",
+      "category": "Bollywood",
+      "releaseDate": "2023-09-07"
+    },
+    {
+      "id": "3",
+      "itemId": "m3",
+      "title": "Avatar: The Way of Water",
+      "language": "English",
+      "genre": "Fantasy, Adventure",
+      "duration": "3h 12m",
+      "rating": 7.9,
+      "price": 300,
+      "poster": "https://image.tmdb.org/t/p/w500/5ScPNT6fHtfYJeWBajZciPV3hEL.jpg",
+      "description": "Jake Sully and Ney’tiri must protect their family and explore Pandora’s oceans.",
+      "category": "Hollywood",
+      "releaseDate": "2022-12-16"
+    },
+    {
+      "id": "4",
+      "itemId": "m4",
+      "title": "RRR",
+      "language": "Telugu",
+      "genre": "Action, Drama",
+      "duration": "3h 7m",
+      "rating": 8.5,
+      "price": 240,
+      "poster": "https://upload.wikimedia.org/wikipedia/en/d/d7/RRR_Poster.jpg",
+      "description": "Two revolutionaries fight against British rule in India, forming an unbreakable bond.",
+      "category": "Tollywood",
+      "releaseDate": "2022-03-25"
+    },
+    {
+      "id": "5",
+      "itemId": "m5",
+      "title": "Spider-Man: No Way Home",
+      "language": "English",
+      "genre": "Action, Superhero",
+      "duration": "2h 28m",
+      "rating": 8.2,
+      "price": 270,
+      "poster": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      "description": "Peter Parker seeks Doctor Strange's help to make the world forget his identity as Spider-Man.",
+      "category": "Superhero",
+      "releaseDate": "2021-12-17"
+    },
+    {
+      "id": "6",
+      "itemId": "m6",
+      "title": "Leo",
+      "language": "Tamil",
+      "genre": "Action, Thriller",
+      "duration": "2h 44m",
+      "rating": 7.6,
+      "price": 230,
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjg1MjJmODYtNmM4ZC00MmIwLTkxMDEtZDRhMjc3NTc3NzgyXkEyXkFqcGc@._V1_.jpg",
+      "description": "A peaceful café owner’s life takes a violent turn when his dark past resurfaces.",
+      "category": "Kollywood",
+      "releaseDate": "2023-10-19"
+    },
+    {
+      "id": "6cf8",
+      "title": "MAD SQUARE",
+      "language": "Telugu",
+      "genre": "Comedy",
+      "duration": "2h 10m",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2FmZDE4ODEtOTU5Yi00NTVlLWJkMzItMTQxOGVhY2RhYmZkXkEyXkFqcGc@._V1_QL75_UX217.5_.jpg",
+      "rating": 5,
+      "price": 350,
+      "description": "Three college buddies navigate their way through campus life, leading to wild adventures and laugh-out-loud moments.",
+      "category": "MALAYALAM",
+      "releaseDate": "2026-01-12"
+    }
+  ],
+  "theaters": [
+    {
+      "id": "1",
+      "name": "PVR Cinemas",
+      "location": "Mumbai",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Pvrcinemas_logo.jpg/250px-Pvrcinemas_logo.jpg",
+      "screens": [
+        {
+          "screenId": 1,
+          "movieId": 1,
+          "category": "IMAX",
+          "price": 250,
+          "showTimes": [
+            "10:00 AM",
+            "2:00 PM",
+            "6:00 PM",
+            "9:30 PM"
+          ],
+          "availableSeats": 80
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "INOX Multiplex",
+      "location": "Delhi",
+      "logo": "https://admin.pacificmalls.in/uploads/shopping/1738569178_Inox%20Logo.png",
+      "screens": [
+        {
+          "screenId": 2,
+          "movieId": 2,
+          "category": "Recliner",
+          "price": 150,
+          "showTimes": [
+            "9:30 AM",
+            "1:00 PM",
+            "5:00 PM",
+            "8:30 PM"
+          ],
+          "availableSeats": 90
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Cinepolis",
+      "location": "Bangalore",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRouBS9Lq6MbQtWSmg97hB8UMpmC4cQT4TbcQ&s",
+      "screens": [
+        {
+          "screenId": 3,
+          "movieId": 3,
+          "category": "GOLD",
+          "price": 350,
+          "showTimes": [
+            "11:30 AM",
+            "3:00 PM",
+            "6:30 PM",
+            "10:00 PM"
+          ],
+          "availableSeats": 85
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "PVR Cinemas",
+      "location": "Delhi",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Pvrcinemas_logo.jpg/250px-Pvrcinemas_logo.jpg",
+      "screens": [
+        {
+          "screenId": 4,
+          "movieId": 4,
+          "category": "Recliner",
+          "price": 150,
+          "showTimes": [
+            "9:30 AM",
+            "1:00 PM",
+            "5:00 PM",
+            "8:30 PM"
+          ],
+          "availableSeats": 90
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "INOX Multiplex",
+      "location": "Delhi",
+      "logo": "https://admin.pacificmalls.in/uploads/shopping/1738569178_Inox%20Logo.png",
+      "screens": [
+        {
+          "screenId": 5,
+          "movieId": 5,
+          "category": "Recliner",
+          "price": 150,
+          "showTimes": [
+            "9:30 AM",
+            "1:00 PM",
+            "5:00 PM",
+            "8:30 PM"
+          ],
+          "availableSeats": 90
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Cinepolis",
+      "location": "Delhi",
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRouBS9Lq6MbQtWSmg97hB8UMpmC4cQT4TbcQ&s",
+      "screens": [
+        {
+          "screenId": 6,
+          "movieId": 6,
+          "category": "Recliner",
+          "price": 150,
+          "showTimes": [
+            "9:30 AM",
+            "1:00 PM",
+            "5:00 PM",
+            "8:30 PM"
+          ],
+          "availableSeats": 90
+        }
+      ]
+    },
+    {
+      "id": "139c",
+      "name": "INSIGNIA",
+      "location": "PUNE",
+      "logo": "",
+      "screens": [
+        {
+          "screenId": 1767786900881,
+          "movieId": "fe07",
+          "category": "GOLD",
+          "price": 199,
+          "availableSeats": 97,
+          "showTimes": [
+            "10:00AM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fbfc",
+      "name": "redux",
+      "location": "PUNE",
+      "logo": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bG9nb3xlbnwwfHwwfHx8MA%3D%3D",
+      "screens": [
+        {
+          "screenId": 1767787792639,
+          "movieId": "dc7b",
+          "category": "GOLD",
+          "price": 99,
+          "availableSeats": 76,
+          "showTimes": [
+            "2:00 pm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "899b",
+      "name": "APLHA",
+      "location": "Kolkata",
+      "logo": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TU9WSUV8ZW58MHx8MHx8fDA%3D",
+      "screens": [
+        {
+          "screenId": 1767788012365,
+          "movieId": "0df3",
+          "category": "SIDER",
+          "price": 62,
+          "availableSeats": 27,
+          "showTimes": [
+            "10:00 AM 12:AM 2:AM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1b15",
+      "name": "INSIGNIA",
+      "location": "Kolkata",
+      "logo": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TU9WSUV8ZW58MHx8MHx8fDA%3D",
+      "screens": [
+        {
+          "screenId": 1767788550137,
+          "movieId": "4279",
+          "category": "GOLD",
+          "price": 650,
+          "availableSeats": 45,
+          "showTimes": [
+            "10:AM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "447a",
+      "name": "MA",
+      "location": "PUNE",
+      "logo": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TU9WSUV8ZW58MHx8MHx8fDA%3D",
+      "screens": [
+        {
+          "screenId": 1767789289226,
+          "movieId": "2ad4",
+          "category": "HEIGHTER",
+          "price": 250,
+          "availableSeats": 450,
+          "showTimes": [
+            "10:00 AM    12:00AM  13:00AM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d92e",
+      "name": "",
+      "location": "",
+      "logo": "",
+      "screens": [
+        {
+          "screenId": 1767790884129,
+          "movieId": "5837",
+          "category": "",
+          "price": 0,
+          "availableSeats": 0,
+          "showTimes": []
+        }
+      ]
+    },
+    {
+      "id": "bde0",
+      "name": "MAXIIMUM",
+      "location": "Kolkata",
+      "logo": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TU9WSUV8ZW58MHx8MHx8fDA%3D",
+      "screens": [
+        {
+          "screenId": 1767791073296,
+          "movieId": "dff4",
+          "category": "LANDER",
+          "price": 250,
+          "availableSeats": 630,
+          "showTimes": [
+            "2:00 AM-10:00 AM  4:00PM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f7ed",
+      "name": "PVR",
+      "location": "Kolkata",
+      "logo": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TU9WSUV8ZW58MHx8MHx8fDA%3D",
+      "screens": [
+        {
+          "screenId": 1768218490028,
+          "movieId": "6cf8",
+          "category": "IMAX",
+          "price": 350,
+          "availableSeats": 98,
+          "showTimes": [
+            "10:00AM"
+          ]
+        }
+      ]
+    }
+  ],
+  "bookings": [
+    {
+      "id": "1",
+      "ticketId": "TCK12345",
+      "movieId": 1,
+      "theaterId": 1,
+      "screenId": 1,
+      "showTime": "6:00 PM",
+      "seats": [
+        "B5",
+        "B6"
+      ],
+      "price": 500,
+      "user": "John Doe",
+      "date": "2025-10-21"
+    },
+    {
+      "id": "2",
+      "ticketId": "TCK56789",
+      "movieId": 2,
+      "theaterId": 2,
+      "screenId": 1,
+      "showTime": "8:30 PM",
+      "seats": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "price": 660,
+      "user": "Aisha Khan",
+      "date": "2025-10-21"
+    }
+  ],
+  "sports": [
+    {
+      "id": "1",
+      "title": "India vs Australia - 3rd T20",
+      "category": "Cricket",
+      "venue": "Eden Gardens, Kolkata",
+      "date": "2025-11-10T15:00:00+05:30",
+      "poster": "https://i.pinimg.com/564x/2c/49/a4/2c49a4bac65061f12cf78c9d58a58694.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Kerala Blasters vs Mumbai City FC",
+      "category": "Football",
+      "venue": "Jawaharlal Nehru Stadium, Kochi",
+      "date": "2025-10-30T19:30:00+05:30",
+      "poster": "https://www.indiansuperleague.com/static-assets/waf-images/0d/63/9f/1-1/2jv8s1qjoz.png?v=100.71&w=1024"
+    },
+    {
+      "id": "3",
+      "title": "India Open - Semi Finals",
+      "category": "Badminton",
+      "venue": "K.D. Jadhav Indoor Hall, New Delhi",
+      "date": "2025-12-05T12:00:00+05:30",
+      "poster": "https://pbs.twimg.com/media/Fyy5FZ-acAEkGjj?format=jpg&name=large"
+    },
+    {
+      "id": "4",
+      "title": "Pro Kabaddi League - Final",
+      "category": "Kabaddi",
+      "venue": "Gachibowli Indoor Stadium, Hyderabad",
+      "date": "2025-12-18T18:30:00+05:30",
+      "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQseh-N_B2FWUZaGJnpKCb6DuF5SB-zjJk60g&s"
+    }
+  ],
+  "events": [
+    {
+      "id": "5",
+      "title": "Arijit Singh Live in Mumbai",
+      "category": "Concert",
+      "venue": "Mahalaxmi Racecourse Grounds, Mumbai",
+      "date": "2025-11-20T19:00:00+05:30",
+      "poster": "data:image/jpeg;base64,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"
+    },
+    {
+      "id": "6",
+      "title": "Bengaluru Half Marathon 2025",
+      "category": "Marathon",
+      "venue": "Bengaluru City Centre",
+      "date": "2025-12-14T06:00:00+05:30",
+      "poster": "https://marketplace.canva.com/EAGp1iq3ZXs/1/0/1131w/canva-blue-illustrative-marathon-festival-flyer-t25c3JLXuI0.jpg"
+    },
+    {
+      "id": "7",
+      "title": "TechFest 2025 - IIT Bombay",
+      "category": "Festival",
+      "venue": "IIT Bombay Campus, Mumbai",
+      "date": "2025-12-10T10:00:00+05:30",
+      "poster": "https://i.ytimg.com/vi/_aCQu35NA7M/maxresdefault.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Stand-Up Comedy Night - Zakir Khan",
+      "category": "Comedy Show",
+      "venue": "Siri Fort Auditorium, Delhi",
+      "date": "2025-11-25T19:30:00+05:30",
+      "poster": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/364c9a157529461.637b113f422bb.jpg"
+    }
+  ],
+  "users": [
+    {
+      "name": "Demo Name",
+      "email": "Demo email",
+      "password": "Demo pasword",
+      "phonenumber": "1234567890",
+      "id": "2bb2",
+      "photo": null
+    },
+    {
+      "id": "5e0f",
+      "name": "Altaf",
+      "email": "yo@yo.com",
+      "password": "123456",
+      "phonenumber": "1234567890",
+      "photo": null
+    },
+    {
+      "id": "5d3e",
+      "name": "Aryan",
+      "email": "email@email.com",
+      "password": "123456",
+      "phonenumber": "1234567890",
+      "photo": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r1",
+      "itemId": "m1",
+      "userName": "Rahul",
+      "rating": 5,
+      "comment": "Amazing movie!",
+      "createdAt": "2025-12-14",
+      "likes": 18,
+      "disLikes": 0,
+      "dislikes": 53
+    },
+    {
+      "id": "r2",
+      "itemId": "m3",
+      "userName": "Ayesha",
+      "rating": 4,
+      "comment": "Worth watching",
+      "createdAt": "2025-12-15",
+      "likes": 1,
+      "disLikes": 0,
+      "dislikes": 3
+    },
+    {
+      "id": "r3",
+      "itemId": "m2",
+      "userName": "Arjun",
+      "rating": 3,
+      "comment": "Good but slow",
+      "createdAt": "2025-12-16",
+      "likes": 0,
+      "disLikes": 0
+    }
+  ]
+}

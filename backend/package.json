@@ -1,11 +1,9 @@
 {
   "name": "bookmyticket-backend",
-  "version": "1.0.0","scripts": {
-"start": "json-server --watch db.json --port ${PORT} --host 0.0.0.0 --cors"
-
-
-
-},
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server --watch db.json --port ${PORT} --host 0.0.0.0 --cors"
+  },
   "dependencies": {
     "json-server": "^0.17.3"
   }

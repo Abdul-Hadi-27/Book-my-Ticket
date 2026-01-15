@@ -1,7 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
 
- const instance=axios.create({
-    baseURL:'http://localhost:3000/'
+const BASE_URL = "https://intuitive-essence-production.up.railway.app";
 
-}) 
-export default  instance;
+const instance = axios.create({
+  baseURL: BASE_URL,
+});
+
+export default instance;

@@ -7,7 +7,7 @@ import UserProfile from "./UserProfile";
 
 const Navbar = () => {
   const user = useSelector((state) => state.userReducer.users);
-  console.log(user);
+  // console.log(user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

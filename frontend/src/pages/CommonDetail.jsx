@@ -12,7 +12,7 @@ const CommonDetail = () => {
   useEffect(() => {
     const getReviews = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/reviews");
+        const { data } = await axios.get("/reviews");
         setReviews(data);
       } catch (error) {
         console.log(error);

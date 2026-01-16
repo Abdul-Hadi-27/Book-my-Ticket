@@ -9,7 +9,7 @@ const Reviews = ({ data, itemId }) => {
     <div className="mt-5">
       {filtered.map((r) => (
         <div key={r.id} className="p-3 flex gap-5 flex-wrap text-black">
-          <div className="mb-3 h-auto flex flex-col rounded-2xl border border-gray-400 w-[400px]">
+          <div className="mb-3 h-auto flex flex-col rounded-2xl border border-gray-400 w-100">
             <div className="flex justify-between w-full px-4 py-2">
               <div className="flex items-center gap-2">
                 <i className="ri-account-circle-2-line text-2xl"></i>

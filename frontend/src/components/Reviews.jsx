@@ -1,43 +1,31 @@
-import { useParams } from "react-router-dom";
 const Reviews = ({ data, itemId }) => {
-  const { title } = useParams();
+  // ensure safe array
+  const reviewsArray = Array.isArray(data) ? data : [];
+
+  // filter for current item
+  const filtered = reviewsArray.filter((r) => r.itemId === itemId);
 
   return (
-    <div>
-      {data
-        .filter((r) => r.itemId === itemId)
-        .map((r) => (
-          <div
-            key={r.id}
-            className=" p-2  flex gap-x-5 gap-y-2  flex-wrap  text-black"
-          >
-            
-
-            <div className=" mb-2 h-25 flex flex-col  rounded-2xl border ml-5 border-gray-400      w-90">
-        
-              <div className="flex  justify-between  w-full px-4">
-                <div className="flex items-center px-2">
-                  <span className="">
-                    {" "}
-                    <i className="ri-account-circle-2-line  text-2xl"></i>
-                  </span>
-
-                  <h1 className="text-xl">
-                    <h3 className="text-xl ml-2 "> {r.userName}</h3>
-                  </h1>
-                </div>
-
-                <p className="text-xl mt-4">⭐{r.rating}/5</p>
+    <div className="mt-5">
+      {filtered.map((r) => (
+        <div key={r.id} className="p-3 flex gap-5 flex-wrap text-black">
+          <div className="mb-3 h-auto flex flex-col rounded-2xl border border-gray-400 w-[400px]">
+            <div className="flex justify-between w-full px-4 py-2">
+              <div className="flex items-center gap-2">
+                <i className="ri-account-circle-2-line text-2xl"></i>
+                <h3 className="text-lg font-semibold">{r.userName}</h3>
               </div>
-
-              <p className="text-lg px-10 mt-2">{r.comment}</p>
+              <p className="text-lg font-medium">⭐{r.rating}/5</p>
             </div>
-            
+            <p className="text-md px-4 pb-3 text-gray-700">{r.comment}</p>
           </div>
-        ))}
+        </div>
+      ))}
 
-      {data.filter((r) => r.itemId === itemId).length === 0 && (
-        <p className="text-2xl font-bold px-20 mt-2">No reviews yet!</p>
+      {filtered.length === 0 && (
+        <p className="text-xl font-semibold text-gray-700 mt-4 px-3">
+          No reviews yet!
+        </p>
       )}
     </div>
   );

@@ -101,7 +101,7 @@ const CommonDetail = () => {
         </div>
 
         <div className="mt-15">
-          <Reviews data={reviews} itemId={item.itemId} />
+          <Reviews data={reviews} itemId={item.id} />
         </div>
       </div>
     );

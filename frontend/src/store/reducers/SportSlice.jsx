@@ -13,15 +13,14 @@ const SportSlice = createSlice({
      addsport: (state, action) => {
       state.sports.push(action.payload);
     },
-    updatesport: (state, action) => {
-      const index = state.sports.findIndex((e) => e.id === action.payload.id);
-      if (index == -1) return;
-      else {
-        state.sports[index] = action.payload;
-      }
-    },
+   updatesport: (state, action) => {
+  const item = action.payload;
+  const index = state.sports.findIndex(e => e.id === item.id);
+  if (index !== -1) state.sports[index] = {...state.sports[index], ...item};
+}
+,
     deletesport: (state, action) => {
-      state.sports = state.sports.filter((e) => e.id !== action.payload.id);
+      state.sports = state.sports.filter((e) => e.id !== action.payload);
     },
   },
 });

@@ -4,7 +4,7 @@ import { loadsports } from '../reducers/SportSlice'
  export const asyncgetsports=()=>async(dispatch)=>{
 try {
     
-    const {data}=await axios.get('./sports')
+    const {data}=await axios.get('/sports')
    dispatch(loadsports(data))
 
     // console.log(data)

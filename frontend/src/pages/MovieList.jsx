@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,29 @@ const MovieList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // ⭐ MULTIPLE SHOW TIMES STATE
+  const [timeInput, setTimeInput] = useState("");
+  const [showTimes, setShowTimes] = useState([]);
+
+  const addShowTime = () => {
+    if (!timeInput) return;
+
+    if (!showTimes.includes(timeInput)) {
+      setShowTimes([...showTimes, timeInput]);
+    }
+    setTimeInput("");
+  };
+
+  const removeShowTime = (time) => {
+    setShowTimes(showTimes.filter((t) => t !== time));
+  };
+
   const submitHandler = async (data) => {
+    if (showTimes.length === 0) {
+  alert("Please add at least one show time");
+  return;
+}
+
     try {
       /* ===================== 1️⃣ CREATE MOVIE ===================== */
       const moviePayload = {
@@ -39,10 +61,7 @@ const MovieList = () => {
         category: data.screenCategory,
         price: Number(data.price),
         availableSeats: Number(data.availableSeats),
-        showTimes: data.showTimes
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
+        showTimes: showTimes, // ✅ ARRAY OF TIMES
       };
 
       /* ===================== 4️⃣ FIND THEATRE ===================== */
@@ -53,19 +72,23 @@ const MovieList = () => {
       );
 
       /* ===================== 5️⃣ UPDATE OR CREATE THEATRE ===================== */
-      if (existingTheatre) {
-        const updatedTheatre = {
-          ...existingTheatre,
-          logo: data.theatreLogo, // ✅ UPDATE LOGO
-          screens: [newScreen],   // ONE SCREEN ONLY
-        };
+     if (existingTheatre) {
+  const updatedTheatre = {
+    ...existingTheatre,
+    logo: data.theatreLogo,
+    screens: [...existingTheatre.screens, newScreen], // ✅ FIX
+  };
 
-        await axios.put(`/theaters/${existingTheatre.id}`, updatedTheatre);
+  await axios.put(`/theaters/${existingTheatre.id}`, updatedTheatre);
+
+
+
+      
       } else {
         const newTheatre = {
           name: data.theatreName,
           location: data.location,
-          logo: data.theatreLogo, // ✅ SAVE LOGO
+          logo: data.theatreLogo,
           screens: [newScreen],
         };
 
@@ -76,6 +99,7 @@ const MovieList = () => {
       await dispatch(asyncgettheatre());
 
       reset();
+      setShowTimes([]);
       navigate("/admin/add-show");
     } catch (error) {
       console.error("Error saving movie & theatre:", error);
@@ -112,7 +136,6 @@ const MovieList = () => {
         <input {...register("theatreName")} placeholder="Theatre Name" className="border p-2" />
         <input {...register("location")} placeholder="Location" className="border p-2" />
 
-        {/* ⭐ NEW THEATRE LOGO FIELD */}
         <input
           {...register("theatreLogo")}
           placeholder="Theatre Logo URL"
@@ -128,11 +151,38 @@ const MovieList = () => {
         <input {...register("price")} type="number" placeholder="Ticket Price" className="border p-2" />
         <input {...register("availableSeats")} type="number" placeholder="Available Seats" className="border p-2" />
 
-        <input
-          {...register("showTimes")}
-          placeholder="Show Times (10:00 AM, 2:00 PM)"
-          className="border p-2 col-span-2"
-        />
+        {/* ⭐ MULTIPLE SHOW TIMES */}
+        <div className="col-span-2">
+          <div className="flex gap-2">
+            <input
+              type="time"
+              value={timeInput}
+              onChange={(e) => setTimeInput(e.target.value)}
+              className="border p-2 w-full"
+            />
+            <button
+              type="button"
+              onClick={addShowTime}
+              className="bg-green-600 text-white px-4 rounded"
+            >
+              Add
+            </button>
+          </div>
+
+          {/* TIME CHIPS (IMAGE STYLE) */}
+          <div className="flex gap-2 flex-wrap mt-3">
+            {showTimes.map((time, index) => (
+              <span
+                key={index}
+                onClick={() => removeShowTime(time)}
+                className="border border-green-600 text-green-600 px-4 py-1 rounded cursor-pointer hover:bg-green-50"
+                title="Click to remove"
+              >
+                {time}
+              </span>
+            ))}
+          </div>
+        </div>
 
         <button
           type="submit"

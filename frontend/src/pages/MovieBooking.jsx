@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EventBooking from "./EventBooking";
 
 const MovieBooking = () => {
   const { id, title } = useParams();
+  const navigate = useNavigate();
 
   const theatres = useSelector((state) => state.theatreReducer.theatres);
   const movies = useSelector((state) => state.movieReducer.movies);
 
   const [hoveredShow, setHoveredShow] = useState(null);
 
-  // ✅ CORRECT: movie by movieId
-  const filteredMovie = movies.filter(
-    (m) => m.id == id && title === "movies"
-  );
+  // ✅ SINGLE movie object
+  const movie = movies.find((m) => m.id == id);
 
-  // ❌ OLD WRONG LOGIC (DO NOT USE)
-  // const filterTheatre = theatres.filter((t) => t.id == id);
-
-  // ✅ CORRECT: theatre by screen.movieId
+  // ✅ theatres where this movie is playing
   const filteredTheatres = theatres.filter((t) =>
     t.screens.some((screen) => screen.movieId == id)
   );
@@ -27,18 +23,18 @@ const MovieBooking = () => {
   return title === "movies" ? (
     <div>
       {/* MOVIE DETAILS */}
-      {filteredMovie.map((m) => (
-        <div key={m.id} className="px-10 mt-6">
-          <h1 className="text-3xl hover:underline cursor-pointer font-bold mb-2">
-            {m.title}-({m.language})
+      {movie && (
+        <div className="px-10 mt-6">
+          <h1 className="text-3xl font-bold mb-2">
+            {movie.title} ({movie.language})
           </h1>
 
           <div className="flex gap-3">
             <span className="border px-3 py-1 rounded-full bg-white text-sm">
-              Runtime: {m.duration}
+              Runtime: {movie.duration}
             </span>
 
-            {m.genre
+            {movie.genre
               .split(",")
               .slice(0, 2)
               .map((g, i) => (
@@ -51,7 +47,7 @@ const MovieBooking = () => {
               ))}
           </div>
         </div>
-      ))}
+      )}
 
       {/* THEATRES */}
       {filteredTheatres.map((t) => (
@@ -74,11 +70,11 @@ const MovieBooking = () => {
           <div className="w-2/3">
             {t.screens.map((screen) => (
               <div key={screen.screenId} className="mb-4">
-                <div className="flex gap-3  flex-wrap">
+                <div className="flex gap-3 flex-wrap">
                   {screen.showTimes.map((time, index) => (
                     <div
                       key={index}
-                      className="relative "
+                      className="relative"
                       onMouseEnter={() =>
                         setHoveredShow({
                           time,
@@ -87,7 +83,22 @@ const MovieBooking = () => {
                       }
                       onMouseLeave={() => setHoveredShow(null)}
                     >
-                      <button className="border-2 border-green-600 px-4 py-1 time rounded text-sm hover:bg-green-50">
+                      <button
+                        onClick={() =>
+                          navigate(`/info/${title}/${id}/seatbooking`, {
+                            state: {
+                              movieName: movie?.title,
+                              selectedTime: time,
+                              theatreName: t.name,
+                              theatreLocation: t.location,
+                              screenId: screen.screenId,
+                              category: screen.category,
+                              price: screen.price,
+                            },
+                          })
+                        }
+                        className="border-2 border-green-600 px-4 py-1 rounded text-sm hover:bg-green-50"
+                      >
                         {time}
                       </button>
 
@@ -117,8 +128,9 @@ const MovieBooking = () => {
         </div>
       ))}
     </div>
-  ) : <EventBooking/>
-   
+  ) : (
+    <EventBooking />
+  );
 };
 
 export default MovieBooking;

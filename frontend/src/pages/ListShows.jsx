@@ -41,30 +41,57 @@ const ListShows = () => {
          <Landmark size={48} strokeWidth={1} />
           <h2 className="text-2xl font-semibold text-gray-950">Events</h2>
         </button>
-        <button
-          onClick={()=>{
-            navigate('/admin/add-show/events')
-          }}
-          className="h-60 w-60  flex items-center justify-center flex-col bg-[#ECF5FF] hover:scale-105 transition hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)]  shadow-gray-500 rounded-2xl"
-        >
+       <button
+  disabled
+  onClick={() => navigate('/admin/add-show/parties')}
+  className="h-60 w-60 flex items-center justify-center flex-col 
+             bg-[#ECF5FF] rounded-2xl relative overflow-hidden
+             hover:scale-105 transition 
+             hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)]"
+>
+  {/* Ribbon */}
+  <div className="absolute top-6 -left-16 rotate-[-30deg]
+                  bg-red-400 text-white
+                  w-56 py-2 text-center
+                  text-sm font-bold tracking-wide shadow-lg">
+    Coming Soon!
+  </div>
          <Beer size={48} strokeWidth={1.25} />
           <h2 className="text-2xl font-semibold text-gray-950">Parties</h2>
         </button>
-        <button
-          onClick={()=>{
-            navigate('/admin/add-show/events')
-          }}
-          className="hh-60 w-60  flex items-center justify-center flex-col bg-[#ECF5FF] hover:scale-105 transition hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)] shadow-gray-500 rounded-2xl"
-        >
+       <button
+  disabled
+  onClick={() => navigate('/admin/add-show/expositions')}
+  className="h-60 w-60 flex items-center justify-center flex-col 
+             bg-[#ECF5FF] rounded-2xl relative overflow-hidden
+             hover:scale-105 transition 
+             hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)]"
+>
+  {/* Ribbon */}
+  <div className="absolute top-6 -left-16 rotate-[-30deg]
+                  bg-red-400 text-white
+                  w-56 py-2 text-center
+                  text-sm font-bold tracking-wide shadow-lg">
+    Coming Soon!
+  </div>
           <BookOpenText size={48} strokeWidth={1.25} />
           <h2 className="text-2xl font-semibold text-gray-950">Expositions</h2>
         </button>
-        <button
-          onClick={()=>{
-            navigate('/admin/add-show/events')
-          }}
-          className="h-60 w-60 flex items-center justify-center flex-col bg-[#ECF5FF] hover:scale-105 transition hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)] shadow-gray-500 rounded-2xl"
-        >
+       <button
+  disabled
+  onClick={() => navigate('/admin/add-show/conferences')}
+  className="h-60 w-60 flex items-center justify-center flex-col 
+             bg-[#ECF5FF] rounded-2xl relative overflow-hidden
+             hover:scale-105 transition 
+             hover:shadow-[4px_4px_10px_rgba(0,0,0,0.15)]"
+>
+  {/* Ribbon */}
+  <div className="absolute top-6 -left-16 rotate-[-30deg]
+                  bg-red-400 text-white
+                  w-56 py-2 text-center
+                  text-sm font-bold tracking-wide shadow-lg">
+    Coming Soon!
+  </div>
           <Speech size={48} strokeWidth={1.25} />
           <h2 className="text-2xl font-semibold text-gray-950">Conferences</h2>
         </button>

@@ -15,6 +15,7 @@ import MyBookings from "../components/MyBookings";
 import Wishlist from "../components/Wishlist";
 import Payments from "../components/Payments";
 import Settings from "../components/Settings";
+import SeatBooking from "../pages/SeatBooking";
 
 const Mainroutes = () => {
   return (
@@ -28,6 +29,7 @@ const Mainroutes = () => {
         <Route path="/info/:title/:id/booking" element={<Theatres />} />
         <Route path="/admin/add-show" element={<ListShows />} />
         <Route path="/admin/add-show/:title" element={<AddShowRouter />} />
+        <Route path="/info/:title/:id/seatbooking" element={<SeatBooking />} />
        
        
         <Route path="/profile" element={<UserProfile/>}>

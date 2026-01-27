@@ -1,11 +1,28 @@
 import { useSelector } from "react-redux";
 import Slider from "../components/Slider";
 import RenderHome from "../components/RenderHome";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+
 
 const Home = () => {
   const movie = useSelector((state) => state.movieReducer.movies);
   const event = useSelector((state) => state.eventReducer.events);
   const sport = useSelector((state) => state.sportReducer.sports);
+ useEffect(() => {
+    toast.info(
+      "⚠️ For the best experience, please disable browser cache.\nOpen Inspect(right click) → Network tab → Enable “Disable cache”, then refresh the page.\nThis helps the app load the latest data correctly.",
+      {
+        position: "top-center",
+        autoClose: 12000,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        theme: "dark",
+      }
+    );
+  }, []);
+
   return (
     <>
       <div

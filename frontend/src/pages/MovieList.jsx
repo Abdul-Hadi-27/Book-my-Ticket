@@ -48,7 +48,7 @@ const MovieList = () => {
         releaseDate: new Date().toISOString().split("T")[0],
       };
 
-      const movieRes = await axios.post("/movies", moviePayload);
+      const movieRes = await axios.post("https://intuitive-essence-production.up.railway.app/movies", moviePayload);
       const createdMovie = movieRes.data;
 
       /* ===================== 2️⃣ GET ALL THEATRES ===================== */

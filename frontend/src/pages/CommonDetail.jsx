@@ -12,7 +12,7 @@ const CommonDetail = () => {
   useEffect(() => {
     const getReviews = async () => {
       try {
-        const { data } = await axios.get("/reviews");
+        const { data } = await axios.get("https://intuitive-essence-production.up.railway.app/reviews");
         setReviews(data);
       } catch (error) {
         console.log(error);

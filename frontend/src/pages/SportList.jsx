@@ -20,7 +20,7 @@ const SportList = () => {
         date: finalDateTime,
       };
 
-      const sportsRes = await axios.post("/sports", sportsPayload);
+      const sportsRes = await axios.post("https://intuitive-essence-production.up.railway.app/sports", sportsPayload);
       console.log("Created Sports:", sportsRes.data);
 
       reset();

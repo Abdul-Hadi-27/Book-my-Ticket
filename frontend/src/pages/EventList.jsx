@@ -25,7 +25,7 @@ const EventList = () => {
         date: finalDateTime,
       };
 
-      const eventsRes = await axios.post("/events", eventsPayload);
+      const eventsRes = await axios.post("https://intuitive-essence-production.up.railway.app/events", eventsPayload);
       console.log("Created Events:", eventsRes.data);
 
       reset();
